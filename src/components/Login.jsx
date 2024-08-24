@@ -2,7 +2,7 @@ import "../App.css";
 import React from "react";
 import { Typography, AppBar, Toolbar, TextField, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"; // Import Axios for API requests
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -24,13 +24,11 @@ const Login = () => {
     try {
       const response = await axios.post('http://localhost:3000/user/login', credentials);
 
-      // Assuming the response contains the token directly in `data`
       const token = response.data;
       
       if (token) {
-        // Store the JWT token in localStorage
         localStorage.setItem("token", token);
-        navigate("/"); // Redirect to the homepage
+        navigate("/");
       } else {
         alert("Login failed: Token not received");
       }
